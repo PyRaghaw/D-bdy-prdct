@@ -1,0 +1,11 @@
+# Force consistent line endings on macOS, Linux, and Windows
+* text=auto eol=lf
+
+# Explicitly declare text files to always be normalized
+*.tsx text
+*.ts text
+*.css text
+*.json text
+*.md text
+*.js text
+*.mjs text
