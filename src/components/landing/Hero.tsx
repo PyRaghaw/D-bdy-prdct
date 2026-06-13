@@ -13,6 +13,14 @@ const fly = (delay: number) => ({
   transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] as const, delay },
 });
 
+function GooglePlayIcon({ className = "w-5 h-5" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 32 32" fill="currentColor" className={className} xmlns="http://www.w3.org/2000/svg">
+      <path d="M5.56 3.125c-.272.28-.426.702-.426 1.238v23.274c0 .536.154.958.426 1.238l.08.076 13.016-13.018v-.248L5.64 3.05l-.08.076zM24.78 10.052l-6.124 6.126 6.128 6.128.082-.046c1.72-.978 2.92-2.772 2.92-4.858s-1.2-3.88-2.92-4.858l-.086-.092zM19.46 17.062l-4.27-4.272-9.284 9.286c.642.676 1.734.746 2.996.03l10.558-6.044zM19.46 14.938l-10.558-6.042c-1.262-.718-2.354-.648-2.996.028l9.284 9.286 4.27-4.272z" />
+    </svg>
+  );
+}
+
 export function Hero() {
   const { scrollY } = useScroll();
   // Parallax translation: translates up to -120px as user scrolls 1000px
@@ -137,7 +145,7 @@ export function Hero() {
             {...fly(0.16)}
             className="text-[clamp(16px,1.5vw,20px)] text-slate-700 leading-[1.7] font-medium mb-10 max-w-[500px] max-lg:mx-auto"
           >
-            VANI turns confusing hospital paperwork into a clear,
+            VAni turns confusing hospital paperwork into a clear,
             AI-monitored recovery plan — with smart reminders, real-time family
             alerts, and a companion that celebrates every win.
           </motion.p>
@@ -148,7 +156,8 @@ export function Hero() {
             className="flex gap-3 flex-wrap max-lg:justify-center mb-10"
           >
             <Button href="#download" variant="primary-lg">
-              {`  Download Free · No credit card`}
+              <GooglePlayIcon className="w-5.5 h-5.5 shrink-0" />
+              <span>Download Free</span>
             </Button>
 
             <Button href="#story" variant="outline-lg">

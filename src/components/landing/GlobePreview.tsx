@@ -84,7 +84,7 @@ const sampleMarkers: GlobeMarker[] = [
 
 export function GlobePreview() {
   return (
-    <div className="relative mx-auto h-[400px] w-full max-w-7xl overflow-hidden rounded-2xl shadow-2xl"
+    <div className="relative mx-auto flex flex-col md:block h-auto md:h-[400px] w-full max-w-7xl overflow-hidden rounded-2xl shadow-2xl pb-8 md:pb-0"
       style={{ background: "linear-gradient(135deg, #0f0f14 0%, #13111f 50%, #0c0e1a 100%)" }}
     >
       {/* Subtle inner glow */}
@@ -94,10 +94,10 @@ export function GlobePreview() {
         }}
       />
 
-      <div className="relative z-10 p-8 md:p-14 h-full flex flex-col justify-center">
+      <div className="relative z-20 p-8 md:p-14 w-full md:w-1/2 flex flex-col justify-center">
         <span className="inline-flex items-center gap-2 text-indigo-400 text-xs font-bold uppercase tracking-widest mb-5">
           <span className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse" />
-          VANI · Care Network
+          VAni · Care Network
         </span>
 
         <h2 className="mb-5 max-w-xl text-3xl font-extrabold tracking-tight text-white md:text-5xl lg:text-[3.25rem] leading-[1.1]">
@@ -111,7 +111,7 @@ export function GlobePreview() {
           Patients, families, and doctors stay connected from discharge to full recovery — no missed alerts, no confusion.
         </p>
 
-        <div className="flex gap-3 flex-wrap">
+        <div className="flex gap-3 flex-wrap relative z-30">
           <a
             href="#download"
             className="flex cursor-pointer items-center justify-center rounded-lg px-5 py-2.5 font-semibold text-white transition-all duration-200 hover:opacity-90 active:scale-[0.98]"
@@ -129,7 +129,7 @@ export function GlobePreview() {
       </div>
 
       {/* Globe container */}
-      <div className="absolute -right-48 -bottom-72 z-10 w-[36rem] h-[36rem] md:-right-40 md:-bottom-60 md:w-[42rem] md:h-[42rem]">
+      <div className="relative md:absolute mx-auto md:mx-0 mt-6 md:mt-0 right-0 bottom-0 md:-right-40 md:-bottom-60 z-10 w-[20rem] h-[20rem] sm:w-[24rem] sm:h-[24rem] md:w-[42rem] md:h-[42rem]">
         <Globe3D
           className="h-full w-full"
           markers={sampleMarkers}

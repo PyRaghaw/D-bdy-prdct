@@ -107,7 +107,7 @@ export function StorySection() {
             />
           </div>
 
-          <div className="relative min-h-[310px] md:min-h-[360px]">
+          <div className="relative h-auto md:min-h-[360px]">
             {[
               {
                 className: 'story-scene-1',
@@ -154,7 +154,7 @@ export function StorySection() {
             ].map((scene) => (
               <div
                 key={scene.className}
-                className={`story-scene ${scene.className} absolute left-0 top-0 max-w-xl md:pr-6`}
+                className={`story-scene ${scene.className} relative md:absolute md:left-0 md:top-0 max-w-xl md:pr-6 mb-12 md:mb-0`}
               >
                 <span className="mb-3 block text-xs font-bold uppercase tracking-[0.24em] text-brand">
                   {scene.tag}

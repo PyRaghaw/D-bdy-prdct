@@ -67,7 +67,7 @@ export function DrugInteractionSection() {
               {/* Glassmorphic card overlay specifically behind subtitle for absolute readability */}
               <div className="mt-4 p-4.5 rounded-2xl bg-white/40 backdrop-blur-md border border-white/60 shadow-sm max-w-[540px]">
                 <p className="text-[13px] leading-relaxed text-slate-600 font-medium">
-                  Avoid dangerous drug-to-drug interactions instantly. VANI automatically cross-references your current prescriptions against a comprehensive clinical safety database.
+                  Avoid dangerous drug-to-drug interactions instantly. VAni automatically cross-references your current prescriptions against a comprehensive clinical safety database.
                 </p>
               </div>
             </Reveal>
@@ -116,7 +116,7 @@ export function DrugInteractionSection() {
                       Dose Spacing Advisor
                     </h4>
                     <p className="text-[12.5px] leading-relaxed text-slate-500 mt-1.5 font-normal">
-                      When minor conflicts exist, VANI suggests customized daily dosage gaps (e.g. 4 hours spacing) to protect heart absorption rates and stomach linings.
+                      When minor conflicts exist, VAni suggests customized daily dosage gaps (e.g. 4 hours spacing) to protect heart absorption rates and stomach linings.
                     </p>
                   </div>
                 </div>
@@ -145,7 +145,7 @@ export function DrugInteractionSection() {
                 </div>
               </div>
               
-              <div className="h-[430px] w-full">
+              <div className="h-auto md:h-[450px] w-full">
                 <DrugMixer />
               </div>
             </div>

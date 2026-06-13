@@ -116,7 +116,7 @@ export default function BlobCursor({
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 pointer-events-none w-full h-full overflow-hidden"
+      className="fixed inset-0 pointer-events-none w-full h-full overflow-hidden hidden md:block"
       style={{ zIndex, isolation: 'isolate' }}
     >
       {useFilter && (

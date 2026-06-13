@@ -549,7 +549,7 @@ export function MagicBento({
       screenshot: "/screenshots/drug-interaction.png",
       layoutClass: "col-span-1 lg:col-span-2",
       isWide: true,
-      imagePosition: "center 28%"
+      imagePosition: "center top"
     },
     {
       label: "Risk Monitor",
@@ -946,7 +946,7 @@ export function MagicBento({
                       </div>
                       {/* Right screenshot */}
                       {card.screenshot && (
-                        <div className="relative w-full h-full min-h-[140px] md:min-h-[auto] rounded-[18px] border border-slate-100 overflow-hidden bg-slate-50 pointer-events-none">
+                        <div className="relative w-full h-[200px] sm:h-[240px] md:h-full rounded-[18px] border border-slate-100 overflow-hidden bg-slate-50 pointer-events-none">
                           <img
                             src={card.screenshot}
                             alt={card.title}

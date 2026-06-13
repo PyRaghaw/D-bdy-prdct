@@ -162,7 +162,7 @@ export default function DrugMixer() {
     status === 'safe' ? 'reaction-safe' : 'reaction-idle';
 
   return (
-    <div className="flex flex-col h-full w-full justify-between relative select-none font-sans">
+    <div className="flex flex-col h-full w-full gap-5 md:gap-0 justify-between relative select-none font-sans">
       
       {/* Shelf of Pills */}
       <div>

@@ -49,13 +49,17 @@ export function Footer() {
           <div className="col-span-2 lg:col-span-2">
             <a href="#" className="flex items-center gap-2.5 mb-5">
               <div
-                className="w-[34px] h-[34px] rounded-[9px] flex items-center justify-center text-[14px] shrink-0"
-                style={{ background: 'linear-gradient(135deg,#5c60f5,#7c3aed)', boxShadow: '0 4px 16px rgba(92,96,245,0.4)' }}
+                className="w-[34px] h-[34px] rounded-[9px] flex items-center justify-center overflow-hidden shrink-0"
+                style={{ background: 'white', boxShadow: '0 4px 16px rgba(92,96,245,0.4)' }}
               >
-                🏥
+                <img
+                  src="/screenshots/vani-logo.png"
+                  alt="VAni Logo"
+                  className="w-full h-full object-cover"
+                />
               </div>
               <span className="font-[family-name:var(--font-bricolage)] text-[18px] font-black text-white tracking-tight">
-                VANI
+                VAni
               </span>
             </a>
             <p className="text-[13px] text-white/35 leading-[1.75] max-w-[230px] mb-7">
@@ -98,7 +102,7 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="pt-6 flex flex-wrap justify-between items-center gap-4">
-          <p className="text-[12px] text-white/20">© 2026 VANI · All rights reserved.</p>
+          <p className="text-[12px] text-white/20">© 2026 VAni · All rights reserved.</p>
           <p className="flex items-center gap-1.5 text-[12px] text-white/20">
             Made with <span className="text-rose-500/80">♥</span> for Google Solution Challenge 2026 🏆
           </p>

@@ -33,7 +33,7 @@ export function Navbar({ hasBar = true }: { hasBar?: boolean }) {
   return (
     <nav
       className={`fixed left-0 right-0 z-[200] transition-all duration-500 ${
-        hasBar ? 'top-[42px]' : 'top-0'
+        scrolled ? 'top-0' : hasBar ? 'top-[42px]' : 'top-0'
       }`}
     >
       {/* Pill wrapper */}
@@ -50,13 +50,16 @@ export function Navbar({ hasBar = true }: { hasBar?: boolean }) {
           <a href="#" className="flex items-center gap-2.5 shrink-0 group">
             <div className="relative w-[34px] h-[34px] shrink-0">
               <div className="absolute inset-[-4px] rounded-[14px] bg-brand/15 animate-ring-pulse" />
-              <div className="relative w-full h-full rounded-[9px] flex items-center justify-center text-[15px] shadow-[0_4px_14px_rgba(92,96,245,0.35)]"
-                style={{ background: 'linear-gradient(135deg,#5c60f5,#7c3aed)' }}>
-                🏥
+              <div className="relative w-full h-full rounded-[9px] flex items-center justify-center overflow-hidden shadow-[0_4px_14px_rgba(92,96,245,0.35)] bg-white">
+                <img
+                  src="/screenshots/vani-logo.png"
+                  alt="VAni Logo"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
             <span className="font-[family-name:var(--font-bricolage)] text-[18px] font-black text-gray-900 whitespace-nowrap tracking-tight">
-              VANI
+              VAni
             </span>
           </a>
 

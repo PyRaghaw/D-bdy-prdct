@@ -274,7 +274,7 @@ export const ROLES = [
 export const TESTIMONIALS = [
   {
     quote:
-      "After my knee surgery I was overwhelmed by my discharge papers. VANI scanned my prescription in seconds and gave me a clear daily schedule. I never missed a single dose.",
+      "After my knee surgery I was overwhelmed by my discharge papers. VAni scanned my prescription in seconds and gave me a clear daily schedule. I never missed a single dose.",
     initials: "RP",
     name: "Rahul P.",
     role: "Post-surgery patient, Delhi",
