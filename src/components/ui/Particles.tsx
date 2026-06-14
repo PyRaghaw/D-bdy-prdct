@@ -120,9 +120,7 @@ export default function Particles({
   const mouseRef = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.innerWidth < 768) {
-      return;
-    }
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
     const container = containerRef.current;
     if (!container) return;
 
@@ -158,7 +156,7 @@ export default function Particles({
       window.addEventListener('mousemove', handleMouseMove);
     }
 
-    const count = particleCount;
+    const count = isMobile ? Math.min(particleCount, 250) : particleCount;
     const positions = new Float32Array(count * 3);
     const randoms = new Float32Array(count * 4);
     const colors = new Float32Array(count * 3);
