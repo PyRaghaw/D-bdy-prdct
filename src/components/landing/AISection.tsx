@@ -96,69 +96,116 @@ export function AISection() {
 
 function FamilyCareNetwork() {
   return (
-    <div className="relative min-h-[520px] overflow-hidden rounded-[36px] border border-white/10 bg-black/45 shadow-[0_40px_120px_rgba(0,0,0,0.35)] backdrop-blur-xl">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(92,96,245,0.24),transparent_54%)]" />
-      <div className="absolute inset-0 opacity-40 [background-image:radial-gradient(circle,rgba(255,255,255,0.10)_1px,transparent_1px)] [background-size:28px_28px]" />
+    <>
+      {/* Mobile Layout (No overlap, clean structured grid) */}
+      <div className="block md:hidden rounded-[36px] border border-white/10 bg-black/45 p-6 shadow-[0_40px_120px_rgba(0,0,0,0.35)] backdrop-blur-xl relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(92,96,245,0.15),transparent_60%)] pointer-events-none" />
+        
+        {/* Patient Central Hub */}
+        <div className="relative z-10 flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-4 mb-6">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-lg shadow-lg">🏥</div>
+          <div className="text-left">
+            <div className="font-[family-name:var(--font-bricolage)] text-sm font-black text-white">Patient Recovery Plan</div>
+            <div className="text-[10px] font-bold uppercase tracking-widest text-brand-light">Active AI Hub</div>
+          </div>
+          <span className="ml-auto flex h-2.5 w-2.5">
+            <span className="animate-ping absolute inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+          </span>
+        </div>
 
-      <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-        <defs>
-          <linearGradient id="careLine" x1="0" x2="1" y1="0" y2="1">
-            <stop stopColor="#5c60f5" stopOpacity="0.08" />
-            <stop offset="0.5" stopColor="#a78bfa" stopOpacity="0.82" />
-            <stop offset="1" stopColor="#22c55e" stopOpacity="0.08" />
-          </linearGradient>
-        </defs>
-        {careNodes.map((node) => (
-          <line
-            key={node.role}
-            x1="50"
-            y1="50"
-            x2={node.x}
-            y2={node.y}
-            stroke="url(#careLine)"
-            strokeWidth="0.5"
-            strokeDasharray="2 2"
-            className="care-line-flow"
-          />
-        ))}
-        <path
-          d="M22 28 C48 8, 74 14, 77 24 C96 38, 92 64, 83 68 C70 94, 42 94, 28 76 C8 60, 10 38, 22 28"
-          fill="none"
-          stroke="rgba(255,255,255,0.12)"
-          strokeWidth="0.45"
-          strokeDasharray="2 2"
-        />
-      </svg>
-
-      <div className="absolute left-1/2 top-1/2 z-20 flex h-24 w-24 sm:h-36 sm:w-36 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-brand/40 bg-brand/15 shadow-[0_0_70px_rgba(92,96,245,0.36)] backdrop-blur-xl">
-        <div className="absolute inset-3 rounded-full border border-white/10" />
-        <div className="absolute inset-0 rounded-full animate-avatar-pulse" />
-        <div className="text-center">
-          <div className="mx-auto mb-1 sm:mb-2 flex h-9 w-9 sm:h-14 sm:w-14 items-center justify-center rounded-full bg-white text-[14px] sm:text-[20px] shadow-lg">🏥</div>
-          <div className="font-[family-name:var(--font-bricolage)] text-[11px] sm:text-sm font-black text-white">Patient Plan</div>
-          <div className="mt-0.5 text-[8px] sm:text-[10px] font-bold uppercase tracking-widest text-white/45">AI hub</div>
+        {/* Connections List */}
+        <div className="relative z-10 space-y-3">
+          <div className="text-[10px] font-black uppercase tracking-wider text-white/40 mb-2 text-left">Connected Circle</div>
+          {careNodes.map((node) => (
+            <div
+              key={node.role}
+              className="flex items-center gap-4 rounded-xl border border-white/5 bg-white/[0.03] p-3 text-left transition-colors hover:bg-white/[0.06]"
+            >
+              <div
+                className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-white font-bold text-sm shadow-sm"
+                style={{ background: `linear-gradient(135deg,${node.color},#5c60f5)` }}
+              >
+                <span className="absolute inset-[-4px] rounded-full opacity-25 blur-sm" style={{ backgroundColor: node.color }} />
+                <span className="relative font-[family-name:var(--font-bricolage)] font-black">{node.initials}</span>
+              </div>
+              <div className="flex-1">
+                <div className="font-[family-name:var(--font-bricolage)] text-xs font-black text-white">{node.role}</div>
+                <div className="text-[10px] text-white/50 mt-0.5">{node.note}</div>
+              </div>
+              <div className="text-[10px] font-mono text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                Live
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
-      {careNodes.map((node) => (
-        <div
-          key={node.role}
-          className="group absolute z-30 -translate-x-1/2 -translate-y-1/2"
-          style={{ left: `${node.x}%`, top: `${node.y}%` }}
-        >
-          <div
-            className="relative flex h-14 w-14 sm:h-20 sm:w-20 items-center justify-center rounded-full border-2 border-white/40 text-white shadow-[0_18px_50px_rgba(0,0,0,0.25)] transition-all duration-300 group-hover:scale-110"
-            style={{ background: `linear-gradient(135deg,${node.color},#5c60f5)` }}
-          >
-            <span className="absolute inset-[-6px] sm:inset-[-8px] rounded-full opacity-30 blur-md" style={{ backgroundColor: node.color }} />
-            <span className="relative font-[family-name:var(--font-bricolage)] text-sm sm:text-lg font-black">{node.initials}</span>
-          </div>
-          <div className="mt-2 min-w-[90px] sm:min-w-[150px] rounded-xl sm:rounded-2xl border border-white/10 bg-white/[0.075] px-2 sm:px-3 py-1.5 sm:py-2 text-center backdrop-blur-xl transition-all duration-300 group-hover:bg-white/[0.12]">
-            <div className="font-[family-name:var(--font-bricolage)] text-[11px] sm:text-[13px] font-black text-white">{node.role}</div>
-            <div className="mt-0.5 text-[9px] sm:text-[10px] leading-snug text-white/45 hidden sm:block">{node.note}</div>
+      {/* Desktop/Tablet Layout (Original Absolute SVG Network) */}
+      <div className="hidden md:block relative min-h-[520px] overflow-hidden rounded-[36px] border border-white/10 bg-black/45 shadow-[0_40px_120px_rgba(0,0,0,0.35)] backdrop-blur-xl">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(92,96,245,0.24),transparent_54%)]" />
+        <div className="absolute inset-0 opacity-40 [background-image:radial-gradient(circle,rgba(255,255,255,0.10)_1px,transparent_1px)] [background-size:28px_28px]" />
+
+        <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="careLine" x1="0" x2="1" y1="0" y2="1">
+              <stop stopColor="#5c60f5" stopOpacity="0.08" />
+              <stop offset="0.5" stopColor="#a78bfa" stopOpacity="0.82" />
+              <stop offset="1" stopColor="#22c55e" stopOpacity="0.08" />
+            </linearGradient>
+          </defs>
+          {careNodes.map((node) => (
+            <line
+              key={node.role}
+              x1="50"
+              y1="50"
+              x2={node.x}
+              y2={node.y}
+              stroke="url(#careLine)"
+              strokeWidth="0.5"
+              strokeDasharray="2 2"
+              className="care-line-flow"
+            />
+          ))}
+          <path
+            d="M22 28 C48 8, 74 14, 77 24 C96 38, 92 64, 83 68 C70 94, 42 94, 28 76 C8 60, 10 38, 22 28"
+            fill="none"
+            stroke="rgba(255,255,255,0.12)"
+            strokeWidth="0.45"
+            strokeDasharray="2 2"
+          />
+        </svg>
+
+        <div className="absolute left-1/2 top-1/2 z-20 flex h-24 w-24 sm:h-36 sm:w-36 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-brand/40 bg-brand/15 shadow-[0_0_70px_rgba(92,96,245,0.36)] backdrop-blur-xl">
+          <div className="absolute inset-3 rounded-full border border-white/10" />
+          <div className="absolute inset-0 rounded-full animate-avatar-pulse" />
+          <div className="text-center">
+            <div className="mx-auto mb-1 sm:mb-2 flex h-9 w-9 sm:h-14 sm:w-14 items-center justify-center rounded-full bg-white text-[14px] sm:text-[20px] shadow-lg">🏥</div>
+            <div className="font-[family-name:var(--font-bricolage)] text-[11px] sm:text-sm font-black text-white">Patient Plan</div>
+            <div className="mt-0.5 text-[8px] sm:text-[10px] font-bold uppercase tracking-widest text-white/45">AI hub</div>
           </div>
         </div>
-      ))}
-    </div>
+
+        {careNodes.map((node) => (
+          <div
+            key={node.role}
+            className="group absolute z-30 -translate-x-1/2 -translate-y-1/2"
+            style={{ left: `${node.x}%`, top: `${node.y}%` }}
+          >
+            <div
+              className="relative flex h-14 w-14 sm:h-20 sm:w-20 items-center justify-center rounded-full border-2 border-white/40 text-white shadow-[0_18px_50px_rgba(0,0,0,0.25)] transition-all duration-300 group-hover:scale-110"
+              style={{ background: `linear-gradient(135deg,${node.color},#5c60f5)` }}
+            >
+              <span className="absolute inset-[-6px] sm:inset-[-8px] rounded-full opacity-30 blur-md" style={{ backgroundColor: node.color }} />
+              <span className="relative font-[family-name:var(--font-bricolage)] text-sm sm:text-lg font-black">{node.initials}</span>
+            </div>
+            <div className="mt-2 min-w-[90px] sm:min-w-[150px] rounded-xl sm:rounded-2xl border border-white/10 bg-white/[0.075] px-2 sm:px-3 py-1.5 sm:py-2 text-center backdrop-blur-xl transition-all duration-300 group-hover:bg-white/[0.12]">
+              <div className="font-[family-name:var(--font-bricolage)] text-[11px] sm:text-[13px] font-black text-white">{node.role}</div>
+              <div className="mt-0.5 text-[9px] sm:text-[10px] leading-snug text-white/45 hidden sm:block">{node.note}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
   );
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { MILESTONES } from '@/lib/landing-data';
 import { RobotMeddy } from './RobotMeddy';
@@ -16,6 +16,14 @@ const XP_COLORS = [
 
 export function BearySection() {
   const [sectionElement, setSectionElement] = useState<HTMLElement | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   const { scrollYProgress } = useScroll({
     target: sectionElement ? { current: sectionElement } : undefined,
     offset: ["start end", "end start"]
@@ -42,7 +50,7 @@ export function BearySection() {
 
         {/* Card — Mr. Meddy */}
         <Reveal>
-          <motion.div style={{ y: yParallax }} className="w-full">
+          <motion.div style={isMobile ? {} : { y: yParallax }} className="w-full">
             <div
               className="relative flex flex-col items-center text-center rounded-[40px] p-12 md:p-14 overflow-hidden"
               style={{

@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Reveal } from './ui/Reveal';
 import { SectionHeader } from './ui/SectionHeader';
@@ -8,6 +8,14 @@ import { GlobePreview } from './GlobePreview';
 
 export function ProblemSection() {
   const containerRef = useRef<HTMLElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -20,12 +28,14 @@ export function ProblemSection() {
   return (
     <section ref={containerRef} className="relative py-[clamp(80px,10vw,130px)] px-5 md:px-12 overflow-hidden bg-white">
       {/* Glassmorphism Shutter Parallax Effect */}
-      <motion.div 
-        className="absolute inset-0 z-[100] backdrop-blur-xl bg-white/40 border-b border-white/40 shadow-[0_20px_40px_rgba(0,0,0,0.1)] hidden md:flex items-end justify-center pb-8"
-        style={{ y: shutterY }}
-      >
-        <div className="w-32 h-[3px] bg-white/60 rounded-full shadow-sm" />
-      </motion.div>
+      {!isMobile && (
+        <motion.div 
+          className="absolute inset-0 z-[100] backdrop-blur-xl bg-white/40 border-b border-white/40 shadow-[0_20px_40px_rgba(0,0,0,0.1)] hidden md:flex items-end justify-center pb-8"
+          style={{ y: shutterY }}
+        >
+          <div className="w-32 h-[3px] bg-white/60 rounded-full shadow-sm" />
+        </motion.div>
+      )}
 
       <div className="absolute inset-0 dot-grid opacity-25 pointer-events-none" />
 

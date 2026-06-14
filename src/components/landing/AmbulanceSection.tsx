@@ -461,13 +461,10 @@ export function AmbulanceSection() {
         </Reveal>
 
         {/* Section Columns */}
-        <div className="grid lg:grid-cols-[0.95fr_1.05fr] gap-6 lg:gap-16 items-center">
-          
-          {/* Left Side: Control Console */}
-          <div className="flex flex-col gap-4 md:gap-6">
+        <div className="flex flex-col lg:grid lg:grid-cols-[0.95fr_1.05fr] gap-6 lg:gap-16 items-start">
             
             {/* Simulation Control Card */}
-            <Reveal className="w-full" delay={0.08}>
+            <Reveal className="w-full lg:col-start-1 lg:col-end-2 lg:row-start-1 order-1" delay={0.08}>
               <div className="rounded-[28px] border border-slate-200 bg-[#fafaf9] p-5 md:p-8 shadow-sm">
                 <div className="flex items-center gap-2 mb-4">
                   <ShieldAlert className="w-5 h-5 text-brand" />
@@ -615,7 +612,7 @@ export function AmbulanceSection() {
             </Reveal>
 
             {/* Live stats card */}
-            <Reveal className="w-full" delay={0.16}>
+            <Reveal className="w-full lg:col-start-1 lg:col-end-2 lg:row-start-2 order-3" delay={0.16}>
               <div className="rounded-[28px] border border-slate-200 bg-white p-4.5 md:p-6 shadow-[var(--shadow-card)]">
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-4">Live Dispatch Logs</span>
 
@@ -652,10 +649,8 @@ export function AmbulanceSection() {
               </div>
             </Reveal>
 
-          </div>
-
           {/* Right Side: Mockup Phone */}
-          <Reveal className="flex justify-center order-first lg:order-none" delay={0.24}>
+          <Reveal className="w-full flex justify-center lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-span-2 order-2 lg:order-none" delay={0.24}>
             <PhoneFrame size="main" premium>
               {/* App Screen Mockup */}
               <div className="relative min-h-[500px] flex flex-col justify-between bg-[#fafaf9] pt-10 text-slate-900 h-full w-full">

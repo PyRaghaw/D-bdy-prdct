@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect, useCallback } from 'react';
+import { useRef, useEffect, useCallback, useState } from 'react';
 import gsap from 'gsap';
 
 /**
@@ -9,6 +9,17 @@ import gsap from 'gsap';
  * No SVG filter used — fully cross-browser (Safari + Chrome).
  */
 export default function BlobCursor() {
+  const [isMobile, setIsMobile] = useState(true);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const containerRef = useRef<HTMLDivElement>(null);
   const ringsRef = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -22,6 +33,7 @@ export default function BlobCursor() {
   ];
 
   const handleMove = useCallback((e: MouseEvent) => {
+    if (isMobile) return;
     const x = e.clientX;
     const y = e.clientY;
 
@@ -35,12 +47,17 @@ export default function BlobCursor() {
         overwrite: 'auto',
       });
     });
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [isMobile, rings]);
 
   useEffect(() => {
+    if (isMobile) return;
     window.addEventListener('mousemove', handleMove);
     return () => window.removeEventListener('mousemove', handleMove);
-  }, [handleMove]);
+  }, [handleMove, isMobile]);
+
+  if (isMobile) {
+    return null;
+  }
 
   return (
     <div

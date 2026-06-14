@@ -259,6 +259,7 @@ export function Globe3D({ markers = [], arcs = [], config = {}, className, onMar
 
   useEffect(() => {
     if (isDragging) return;
+    if (typeof window !== 'undefined' && window.innerWidth < 768) return;
     let animationFrameId: number;
     const update = () => {
       setRotationY((prev) => prev + (autoRotateSpeed * 0.005));

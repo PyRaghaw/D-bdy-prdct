@@ -267,3 +267,89 @@ html.lenis, html.lenis body { height: auto; }
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ═══════════════════════════════════
+   MOBILE PERFORMANCE
+   All the heavy GPU ops that run fine
+   on desktop but kill 60fps on phones.
+═══════════════════════════════════ */
+@media (max-width: 767px) {
+
+  /* ── Smooth momentum scrolling ── */
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* ── Kill backdrop-blur (#1 GPU killer on mobile) ── */
+  * {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+  /* Give glass elements a solid fallback so they don't become invisible */
+  .glass {
+    background: rgba(255,255,255,0.96) !important;
+  }
+  .glass-dark {
+    background: rgba(10,10,20,0.92) !important;
+  }
+
+  /* ── Kill decorative blur blobs ──
+     These are the `blur-3xl / blur-2xl / blur-xl` divs
+     used purely for ambient glow — invisible on mobile anyway
+     after losing opacity, so remove the filter entirely.       */
+  .blur-3xl, .blur-2xl, .blur-xl, .blur-lg {
+    filter: none !important;
+    opacity: 0 !important;
+  }
+
+  /* ── Noise texture adds an SVG filter layer — remove it ── */
+  .noise::after {
+    display: none !important;
+  }
+
+  /* ── Dot-grid backgrounds add extra paint ops ── */
+  .dot-grid, .dot-grid-dark {
+    background-image: none !important;
+  }
+
+  /* ── Stop non-essential continuous animations ──
+     Only keep: ticker (ProofStrip), pulse-dot (badges),
+     bear-bounce (Mr. Meddy), fill-bar (one-shot),
+     announcement (one-shot), fade-in-up (one-shot)            */
+  .animate-glow-pulse    { animation: none !important; }
+  .animate-ring-pulse    { animation: none !important; }
+  .animate-avatar-pulse  { animation: none !important; }
+  .animate-mascot-slide  { animation: none !important; }
+  .animate-mascot-drift  { animation: none !important; }
+  .animate-float-main    { animation: none !important; }
+  .animate-float-side-l  { animation: none !important; }
+  .animate-float-side-r  { animation: none !important; }
+  .animate-chip-float    { animation: none !important; }
+  .care-line-flow        { animation: none !important; }
+
+  /* Ping is an expensive opacity+scale loop on many elements */
+  .animate-ping {
+    animation: none !important;
+    opacity: 0.75 !important;
+  }
+
+  /* Shimmer on the CTA button uses background-position animation;
+     keep the gradient, just stop the movement.                 */
+  .btn-shimmer {
+    animation: none !important;
+    background: linear-gradient(135deg, #4338ca 0%, #5c60f5 50%, #7c3aed 100%) !important;
+    background-size: 100% auto !important;
+  }
+
+  /* Slow the ticker slightly — still smooth, but lighter */
+  .animate-ticker {
+    animation-duration: 40s !important;
+  }
+
+  /* ── Content visibility: let browser skip offscreen sections ── */
+  section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 600px;
+  }
+}
+

@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Button } from './ui/Button';
 import { MeddyAppPhone } from './MeddyAppPhone';
@@ -22,6 +23,14 @@ function GooglePlayIcon({ className = "w-5 h-5" }: { className?: string }) {
 }
 
 export function Hero() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const { scrollY } = useScroll();
   // Parallax translation: translates up to -120px as user scrolls 1000px
   const yParallax = useTransform(scrollY, [0, 1000], [0, -120]);
@@ -193,7 +202,7 @@ export function Hero() {
           transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className="relative flex justify-center pb-12 lg:pb-20 w-full"
         >
-          <motion.div style={{ y: yParallax }} className="relative w-full flex justify-center">
+          <motion.div style={isMobile ? {} : { y: yParallax }} className="relative w-full flex justify-center">
             <motion.div
               initial={{ opacity: 0, x: 80, rotate: 8 }}
               animate={{ opacity: 1, x: 0, rotate: 0 }}

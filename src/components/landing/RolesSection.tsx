@@ -60,51 +60,6 @@ export function RolesSection() {
           }
         }
 
-        /* ── Mobile: flat fanned card layout instead of 3D orbit ── */
-        @media (max-width: 639px) {
-          /* Remove 3D perspective on mobile */
-          .roles-scene-3d {
-            perspective: none !important;
-          }
-
-          /* Flatten the ring container to a square that can hold the 3 phones */
-          .roles-orbit-ring-3d {
-            transform: none !important;
-            width: 320px !important;
-            height: 500px !important;
-          }
-
-          /* Hide the SVG ring lines on mobile */
-          .roles-orbit-ring-3d > svg {
-            display: none !important;
-          }
-
-          /* Hide the spinning ring */
-          .roles-ring-spin {
-            animation: none !important;
-          }
-
-          /* Phone 1 (Patient) — left, tilted, smaller, behind */
-          .roles-orbit-anim-1 {
-            animation: none !important;
-            transform: translateX(-92px) scale(0.50) rotate(-7deg) !important;
-            z-index: 5 !important;
-          }
-
-          /* Phone 2 (Family) — center, upright, slightly bigger, in front */
-          .roles-orbit-anim-2 {
-            animation: none !important;
-            transform: translateY(-28px) scale(0.58) !important;
-            z-index: 20 !important;
-          }
-
-          /* Phone 3 (Caregiver) — right, tilted, smaller, behind */
-          .roles-orbit-anim-3 {
-            animation: none !important;
-            transform: translateX(92px) scale(0.50) rotate(7deg) !important;
-            z-index: 5 !important;
-          }
-        }
 
         /* 3D Scene Wrapper */
         .roles-scene-3d {

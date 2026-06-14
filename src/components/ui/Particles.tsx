@@ -120,6 +120,9 @@ export default function Particles({
   const mouseRef = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      return;
+    }
     const container = containerRef.current;
     if (!container) return;
 
