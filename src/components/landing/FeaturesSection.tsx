@@ -272,7 +272,7 @@ export function MagicBento() {
               {/* Premium Hero Mockup PhoneFrame */}
               <PhoneFrame size="main" premium>
                 {/* Screen Content */}
-                <div className="relative w-full h-full bg-slate-950 overflow-hidden">
+                <div className="relative w-full h-[500px] bg-slate-950 overflow-hidden">
                   <img
                     key={activeIdx}
                     src={cardData[activeIdx].screenshot}
@@ -300,7 +300,7 @@ export function MagicBento() {
           {/* Phone frame matching Hero style */}
           <div className="relative transform scale-[0.82] origin-center">
             <PhoneFrame size="main" premium>
-              <div className="relative w-full h-full bg-slate-950 overflow-hidden">
+              <div className="relative w-full h-[500px] bg-slate-950 overflow-hidden">
                 <img
                   key={activeIdx}
                   src={cardData[activeIdx].screenshot}
