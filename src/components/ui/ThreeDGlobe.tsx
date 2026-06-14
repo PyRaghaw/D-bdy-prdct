@@ -259,10 +259,14 @@ export function Globe3D({ markers = [], arcs = [], config = {}, className, onMar
 
   useEffect(() => {
     if (isDragging) return;
-    if (typeof window !== 'undefined' && window.innerWidth < 768) return;
+    
+    // Check if we are on mobile to run rotation at a slower speed
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    const speed = isMobile ? autoRotateSpeed * 0.4 : autoRotateSpeed;
+
     let animationFrameId: number;
     const update = () => {
-      setRotationY((prev) => prev + (autoRotateSpeed * 0.005));
+      setRotationY((prev) => prev + (speed * 0.005));
       animationFrameId = requestAnimationFrame(update);
     };
     animationFrameId = requestAnimationFrame(update);
