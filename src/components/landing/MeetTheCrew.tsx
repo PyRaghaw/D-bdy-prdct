@@ -92,8 +92,8 @@ export function MeetTheCrew() {
 
   return (
     <>
-      {/* Desktop Trigger — anchored to bottom-right of TestimonialsSection (taskbar style) */}
-      <div className="hidden lg:flex absolute bottom-8 right-4 z-[100] flex-col items-center gap-2">
+      {/* Trigger — anchored to bottom-right of TestimonialsSection (taskbar style) */}
+      <div className="flex absolute bottom-8 right-4 z-[100] flex-col items-center gap-2">
         <button
           onClick={togglePanel}
           className={`flex flex-col items-center gap-1.5 p-2.5 bg-white/85 backdrop-blur-md border border-purple-100 rounded-[20px] shadow-xl hover:shadow-2xl hover:border-purple-300 transition-all duration-300 ${isOpen ? 'opacity-0 pointer-events-none translate-x-10' : 'opacity-100 translate-x-0'}`}
