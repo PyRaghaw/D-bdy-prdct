@@ -4,6 +4,7 @@ import { useRef, useEffect, useState } from 'react';
 import { Reveal } from './ui/Reveal';
 import { SectionHeader } from './ui/SectionHeader';
 import ShapeGrid from '@/components/ui/ShapeGrid';
+import { PhoneFrame } from './ui/PhoneFrame';
 
 const MOBILE_BREAKPOINT = 768;
 
@@ -31,6 +32,7 @@ interface CustomBentoCard {
   screenshot?: string;
   bullets?: string[];
   imagePosition?: string;
+  glow: string;
 }
 
 export function MagicBento() {
@@ -48,7 +50,8 @@ export function MagicBento() {
       icon: "📷",
       iconBg: "bg-purple-50",
       screenshot: "/screenshots/scan-bento.png",
-      imagePosition: "center top"
+      imagePosition: "center top",
+      glow: "rgba(147, 51, 234, 0.12)" // Purple
     },
     {
       label: "Voice Assistant",
@@ -62,7 +65,8 @@ export function MagicBento() {
       icon: "🎙️",
       iconBg: "bg-indigo-50",
       screenshot: "/screenshots/voice-first.png",
-      imagePosition: "center 80%"
+      imagePosition: "center 80%",
+      glow: "rgba(99, 102, 241, 0.12)" // Indigo
     },
     {
       label: "Safety Checker",
@@ -76,7 +80,8 @@ export function MagicBento() {
       icon: "🛡️",
       iconBg: "bg-emerald-50",
       screenshot: "/screenshots/drug-interaction.png",
-      imagePosition: "center top"
+      imagePosition: "center top",
+      glow: "rgba(16, 185, 129, 0.12)" // Emerald
     },
     {
       label: "Risk Monitor",
@@ -85,7 +90,8 @@ export function MagicBento() {
       icon: "🚨",
       iconBg: "bg-rose-50",
       screenshot: "/screenshots/symptoms-bento.jpeg",
-      imagePosition: "center top"
+      imagePosition: "center top",
+      glow: "rgba(244, 63, 94, 0.12)" // Rose
     },
     {
       label: "Emergency Hub",
@@ -94,7 +100,8 @@ export function MagicBento() {
       icon: "🆘",
       iconBg: "bg-red-50",
       screenshot: "/screenshots/smart-sos-bento.jpeg",
-      imagePosition: "center top"
+      imagePosition: "center top",
+      glow: "rgba(239, 68, 68, 0.12)" // Red
     },
     {
       label: "Offline SOS",
@@ -108,7 +115,8 @@ export function MagicBento() {
       icon: "📴",
       iconBg: "bg-emerald-50",
       screenshot: "/screenshots/offline-emergency.png",
-      imagePosition: "center 32%"
+      imagePosition: "center 32%",
+      glow: "rgba(16, 185, 129, 0.12)" // Emerald
     }
   ];
 
@@ -140,8 +148,8 @@ export function MagicBento() {
     const y = e.clientY - rect.top;
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * -10; // max 10deg tilt
-    const rotateY = ((x - centerX) / centerX) * 10;
+    const rotateX = ((y - centerY) / centerY) * -8; // max 8deg tilt for PhoneFrame
+    const rotateY = ((x - centerX) / centerX) * 8;
     setTilt({ x: rotateX, y: rotateY });
   };
 
@@ -240,7 +248,10 @@ export function MagicBento() {
         {/* Right column - Mockup phone showcase */}
         <div className="flex-1 flex items-center justify-center relative bg-gradient-to-tr from-brand-light/20 via-slate-50 to-white rounded-[32px] border border-slate-100/80 p-8 shadow-inner overflow-hidden min-h-[580px]">
           {/* Volumetric background glow */}
-          <div className="absolute w-[360px] h-[360px] rounded-full bg-brand/8 blur-3xl pointer-events-none transition-all duration-500" />
+          <div 
+            className="absolute w-[360px] h-[360px] rounded-full blur-3xl pointer-events-none transition-all duration-700 ease-out" 
+            style={{ backgroundColor: cardData[activeIdx].glow }}
+          />
 
           {/* Perspective container */}
           <div 
@@ -250,29 +261,27 @@ export function MagicBento() {
             onMouseLeave={handleMouseLeave}
             onMouseEnter={handleMouseEnter}
           >
-            {/* Minimalist Phone device mock */}
+            {/* Wrapper for 3D tilt */}
             <div 
-              className="relative w-[240px] h-[480px] rounded-[38px] border-[8px] border-slate-900 bg-slate-900 shadow-[0_30px_60px_rgba(15,23,42,0.3),0_0_0_1px_rgba(255,255,255,0.05)] overflow-hidden transition-all duration-300 ease-out"
+              className="transition-transform duration-300 ease-out"
               style={{
-                transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) translateZ(10px)`,
+                transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
                 transformStyle: 'preserve-3d',
               }}
             >
-              {/* Speaker camera notch */}
-              <div className="absolute top-1.5 left-1/2 -translate-x-1/2 w-16 h-3 rounded-full bg-slate-900 z-30 flex items-center justify-center">
-                <div className="w-1.5 h-1.5 rounded-full bg-slate-800" />
-              </div>
-
-              {/* Screen Container */}
-              <div className="relative w-full h-full bg-slate-950 overflow-hidden">
-                <img
-                  key={activeIdx}
-                  src={cardData[activeIdx].screenshot}
-                  alt={cardData[activeIdx].title}
-                  className="w-full h-full object-cover rounded-[30px] phone-screen-anim"
-                  style={{ objectPosition: cardData[activeIdx].imagePosition || 'center top' }}
-                />
-              </div>
+              {/* Premium Hero Mockup PhoneFrame */}
+              <PhoneFrame size="main" premium>
+                {/* Screen Content */}
+                <div className="relative w-full h-full bg-slate-950 overflow-hidden">
+                  <img
+                    key={activeIdx}
+                    src={cardData[activeIdx].screenshot}
+                    alt={cardData[activeIdx].title}
+                    className="w-full h-full object-cover phone-screen-anim absolute inset-0 animate-fade-in"
+                    style={{ objectPosition: cardData[activeIdx].imagePosition || 'center top' }}
+                  />
+                </div>
+              </PhoneFrame>
             </div>
           </div>
         </div>
@@ -283,19 +292,24 @@ export function MagicBento() {
         {/* Large centered phone mock */}
         <div className="relative w-full max-w-[270px] h-[460px] rounded-[36px] bg-gradient-to-tr from-brand-light/10 via-slate-50 to-white flex items-center justify-center border border-slate-100 p-4 shadow-sm">
           {/* Backing glow */}
-          <div className="absolute w-[200px] h-[200px] rounded-full bg-brand/5 blur-2xl pointer-events-none" />
+          <div 
+            className="absolute w-[200px] h-[200px] rounded-full blur-2xl pointer-events-none transition-all duration-700 ease-out" 
+            style={{ backgroundColor: cardData[activeIdx].glow }}
+          />
 
-          {/* Phone frame */}
-          <div className="relative w-[200px] h-[400px] rounded-[32px] border-[6px] border-slate-900 bg-slate-900 shadow-lg overflow-hidden">
-            {/* Notch */}
-            <div className="absolute top-1 left-1/2 -translate-x-1/2 w-12 h-2.5 rounded-full bg-slate-900 z-30" />
-            <img
-              key={activeIdx}
-              src={cardData[activeIdx].screenshot}
-              alt={cardData[activeIdx].title}
-              className="w-full h-full object-cover phone-screen-anim"
-              style={{ objectPosition: cardData[activeIdx].imagePosition || 'center top' }}
-            />
+          {/* Phone frame matching Hero style */}
+          <div className="relative transform scale-[0.82] origin-center">
+            <PhoneFrame size="main" premium>
+              <div className="relative w-full h-full bg-slate-950 overflow-hidden">
+                <img
+                  key={activeIdx}
+                  src={cardData[activeIdx].screenshot}
+                  alt={cardData[activeIdx].title}
+                  className="w-full h-full object-cover phone-screen-anim absolute inset-0"
+                  style={{ objectPosition: cardData[activeIdx].imagePosition || 'center top' }}
+                />
+              </div>
+            </PhoneFrame>
           </div>
 
           {/* Swipe helper buttons */}
