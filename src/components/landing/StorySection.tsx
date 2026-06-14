@@ -338,7 +338,7 @@ export function StorySection() {
 function DischargePaper({ className, compact = false }: { className?: string; compact?: boolean }) {
   return (
     <div
-      className={`${className ?? ''} h-[500px] w-full max-w-[350px] md:w-[350px] rounded-sm border border-slate-200 bg-white p-8 shadow-2xl`}
+      className={`${className ?? ''} ${compact ? 'h-[500px]' : 'h-[580px]'} flex flex-col w-full max-w-[350px] md:w-[350px] rounded-sm border border-slate-200 bg-white p-8 shadow-2xl`}
     >
       <div className="mb-6 flex items-center gap-3 border-b border-slate-100 pb-4">
         <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand/10">

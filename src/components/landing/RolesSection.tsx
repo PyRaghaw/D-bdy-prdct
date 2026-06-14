@@ -55,8 +55,8 @@ export function RolesSection() {
         }
         @media (max-width: 639px) {
           :root {
-            --roles-orbit-radius: 120px;
-            --roles-phone-scale: 0.46;
+            --roles-orbit-radius: 153px;
+            --roles-phone-scale: 0.45;
           }
         }
 
