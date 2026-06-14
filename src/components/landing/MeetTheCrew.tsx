@@ -92,34 +92,26 @@ export function MeetTheCrew() {
 
   return (
     <>
-      {/* Trigger — anchored to bottom-right of TestimonialsSection (taskbar style) */}
-      <div className="flex absolute bottom-8 right-4 z-[100] flex-col items-center gap-2">
-        <button
-          onClick={togglePanel}
-          className={`flex flex-col items-center gap-1.5 p-2.5 bg-white/85 backdrop-blur-md border border-purple-100 rounded-[20px] shadow-xl hover:shadow-2xl hover:border-purple-300 transition-all duration-300 ${isOpen ? 'opacity-0 pointer-events-none translate-x-10' : 'opacity-100 translate-x-0'}`}
-        >
-          <div className="flex flex-col -space-y-2 relative">
-            {CREW_MEMBERS.slice(0, 3).map((member, i) => (
-              <div key={member.id} className="relative w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-purple-50 shadow-sm" style={{ zIndex: 10 - i }}>
-                <img src={member.avatar} alt={member.name} className="w-full h-full object-cover" />
+      {/* Trigger — sticky/floating directly above the chatbot, bound to the parent container */}
+      <div className="pointer-events-none absolute inset-y-0 right-6 z-[100] w-[120px] flex flex-col justify-end">
+        <div className="pointer-events-auto sticky bottom-[104px] w-full flex flex-col items-center">
+          <button
+            onClick={togglePanel}
+            className={`flex flex-col items-center gap-1.5 p-2.5 bg-white/85 backdrop-blur-md border border-purple-100 rounded-[20px] shadow-xl hover:shadow-2xl hover:border-purple-300 transition-all duration-300 ${isOpen ? 'opacity-0 pointer-events-none translate-x-10' : 'opacity-100 translate-x-0'}`}
+          >
+            <div className="flex flex-col -space-y-2 relative">
+              {CREW_MEMBERS.slice(0, 3).map((member, i) => (
+                <div key={member.id} className="relative w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-purple-50 shadow-sm" style={{ zIndex: 10 - i }}>
+                  <img src={member.avatar} alt={member.name} className="w-full h-full object-cover" />
+                </div>
+              ))}
+              <div className="relative w-10 h-10 rounded-full border-2 border-white bg-purple-100 flex items-center justify-center text-xs font-bold text-purple-700 shadow-sm z-0">
+                +1
               </div>
-            ))}
-            <div className="relative w-10 h-10 rounded-full border-2 border-white bg-purple-100 flex items-center justify-center text-xs font-bold text-purple-700 shadow-sm z-0">
-              +1
             </div>
-          </div>
-          <span className="text-xs font-semibold text-purple-800 tracking-wide mt-1">Crew</span>
-        </button>
-      </div>
-
-      {/* 2. Tablet Trigger (Floating Circular Button) — hidden on phones */}
-      <div className="hidden md:flex lg:hidden fixed bottom-24 right-6 z-[100]">
-        <button
-          onClick={togglePanel}
-          className={`w-14 h-14 bg-white/90 backdrop-blur-md border border-purple-200 rounded-full shadow-lg flex items-center justify-center text-purple-700 hover:bg-purple-50 hover:scale-105 transition-all duration-300 ${isOpen ? 'opacity-0 pointer-events-none scale-90' : 'opacity-100 scale-100'}`}
-        >
-          <Users size={24} />
-        </button>
+            <span className="text-xs font-semibold text-purple-800 tracking-wide mt-1">Crew</span>
+          </button>
+        </div>
       </div>
 
       {/* The Expanded Panel/Drawer */}

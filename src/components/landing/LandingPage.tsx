@@ -41,14 +41,14 @@ export function LandingPage() {
         <DrugInteractionSection />
         <BearySection />
         <AmbulanceSection />
-        {/* TestimonialsSection with MeetTheCrew anchored to it via relative wrapper */}
-        <div className="relative">
-          <TestimonialsSection />
-          <MeetTheCrew />
-        </div>
-        <CTASection />
       </main>
-      <Footer />
+      {/* Relative wrapper grouping Testimonials, CTA, and Footer for sticky MeetTheCrew boundary */}
+      <div className="relative">
+        <TestimonialsSection />
+        <CTASection />
+        <Footer />
+        <MeetTheCrew />
+      </div>
       <ChatbotWidget />
     </>
   );
