@@ -100,26 +100,26 @@ export function RolesSection() {
         /* Orbit Keyframes using mathematically-exact counter-rotation to remain upright */
         @keyframes roles-orbit-phone-1-keyframes {
           0% {
-            transform: rotateZ(0deg) translateX(var(--roles-orbit-radius)) rotateZ(0deg) rotateY(5deg) rotateX(-36deg);
+            transform: rotateZ(0deg) translateX(var(--roles-orbit-radius)) rotateZ(0deg) rotateY(5deg) rotateX(-36deg) scale(var(--roles-phone-scale-current, var(--roles-phone-scale)));
           }
           100% {
-            transform: rotateZ(360deg) translateX(var(--roles-orbit-radius)) rotateZ(-360deg) rotateY(5deg) rotateX(-36deg);
+            transform: rotateZ(360deg) translateX(var(--roles-orbit-radius)) rotateZ(-360deg) rotateY(5deg) rotateX(-36deg) scale(var(--roles-phone-scale-current, var(--roles-phone-scale)));
           }
         }
         @keyframes roles-orbit-phone-2-keyframes {
           0% {
-            transform: rotateZ(120deg) translateX(var(--roles-orbit-radius)) rotateZ(-120deg) rotateY(5deg) rotateX(-36deg);
+            transform: rotateZ(120deg) translateX(var(--roles-orbit-radius)) rotateZ(-120deg) rotateY(5deg) rotateX(-36deg) scale(var(--roles-phone-scale-current, var(--roles-phone-scale)));
           }
           100% {
-            transform: rotateZ(480deg) translateX(var(--roles-orbit-radius)) rotateZ(-480deg) rotateY(5deg) rotateX(-36deg);
+            transform: rotateZ(480deg) translateX(var(--roles-orbit-radius)) rotateZ(-480deg) rotateY(5deg) rotateX(-36deg) scale(var(--roles-phone-scale-current, var(--roles-phone-scale)));
           }
         }
         @keyframes roles-orbit-phone-3-keyframes {
           0% {
-            transform: rotateZ(240deg) translateX(var(--roles-orbit-radius)) rotateZ(-240deg) rotateY(5deg) rotateX(-36deg);
+            transform: rotateZ(240deg) translateX(var(--roles-orbit-radius)) rotateZ(-240deg) rotateY(5deg) rotateX(-36deg) scale(var(--roles-phone-scale-current, var(--roles-phone-scale)));
           }
           100% {
-            transform: rotateZ(600deg) translateX(var(--roles-orbit-radius)) rotateZ(-600deg) rotateY(5deg) rotateX(-36deg);
+            transform: rotateZ(600deg) translateX(var(--roles-orbit-radius)) rotateZ(-600deg) rotateY(5deg) rotateX(-36deg) scale(var(--roles-phone-scale-current, var(--roles-phone-scale)));
           }
         }
 
@@ -395,8 +395,13 @@ export function RolesSection() {
                     setActiveRole(null);
                     setIsPaused(false);
                   }}
+                  style={{
+                    '--roles-phone-scale-current': activeRole === 'patient'
+                      ? 'calc(var(--roles-phone-scale) * 1.05)'
+                      : 'var(--roles-phone-scale)'
+                  } as React.CSSProperties}
                   className={`absolute left-1/2 top-1/2 -ml-[113px] -mt-[215px] roles-orbit-anim-1 transition-all duration-300 ${
-                    activeRole === 'patient' ? 'scale-105 z-[150]' : 'scale-[var(--roles-phone-scale)] hover:z-[150]'
+                    activeRole === 'patient' ? 'z-[150]' : 'hover:z-[150]'
                   }`}
                 >
                   <div className="absolute -inset-10 rounded-full bg-blue-500/10 blur-3xl opacity-60 pointer-events-none transition-opacity duration-300" />
@@ -492,8 +497,13 @@ export function RolesSection() {
                     setActiveRole(null);
                     setIsPaused(false);
                   }}
+                  style={{
+                    '--roles-phone-scale-current': activeRole === 'family'
+                      ? 'calc(var(--roles-phone-scale) * 1.05)'
+                      : 'var(--roles-phone-scale)'
+                  } as React.CSSProperties}
                   className={`absolute left-1/2 top-1/2 -ml-[113px] -mt-[215px] roles-orbit-anim-2 transition-all duration-300 ${
-                    activeRole === 'family' ? 'scale-105 z-[150]' : 'scale-[var(--roles-phone-scale)] hover:z-[150]'
+                    activeRole === 'family' ? 'z-[150]' : 'hover:z-[150]'
                   }`}
                 >
                   <div className="absolute -inset-10 rounded-full bg-purple-500/10 blur-3xl opacity-60 pointer-events-none transition-opacity duration-300" />
@@ -599,8 +609,13 @@ export function RolesSection() {
                     setActiveRole(null);
                     setIsPaused(false);
                   }}
+                  style={{
+                    '--roles-phone-scale-current': activeRole === 'caregiver'
+                      ? 'calc(var(--roles-phone-scale) * 1.05)'
+                      : 'var(--roles-phone-scale)'
+                  } as React.CSSProperties}
                   className={`absolute left-1/2 top-1/2 -ml-[113px] -mt-[215px] roles-orbit-anim-3 transition-all duration-300 ${
-                    activeRole === 'caregiver' ? 'scale-105 z-[150]' : 'scale-[var(--roles-phone-scale)] hover:z-[150]'
+                    activeRole === 'caregiver' ? 'z-[150]' : 'hover:z-[150]'
                   }`}
                 >
                   <div className="absolute -inset-10 rounded-full bg-emerald-500/10 blur-3xl opacity-60 pointer-events-none transition-opacity duration-300" />
