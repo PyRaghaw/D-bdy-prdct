@@ -479,14 +479,17 @@ export function Globe3D({ markers = [], arcs = [], config = {}, className, onMar
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const updateCanvasSize = () => {
-      setCanvasSize({ width: canvas.offsetWidth, height: canvas.offsetHeight });
-    };
+    const observer = new ResizeObserver((entries) => {
+      for (let entry of entries) {
+        setCanvasSize({ 
+          width: entry.contentRect.width || canvas.offsetWidth, 
+          height: entry.contentRect.height || canvas.offsetHeight 
+        });
+      }
+    });
 
-    updateCanvasSize();
-    window.addEventListener('resize', updateCanvasSize);
-
-    return () => window.removeEventListener('resize', updateCanvasSize);
+    observer.observe(canvas);
+    return () => observer.disconnect();
   }, []);
 
   const projectedMarkers = markers.map((marker, index) => {
@@ -564,11 +567,11 @@ export function Globe3D({ markers = [], arcs = [], config = {}, className, onMar
                 onClick={() => onMarkerClick?.(marker)}
               >
                 <div
-                  className="absolute h-10 w-10 rounded-full opacity-25 blur-[1px] animate-ping pointer-events-none"
+                  className="absolute h-10 w-10 rounded-full opacity-25 blur-[1px] animate-ping pointer-events-none hidden md:block"
                   style={{ backgroundColor: marker.color ?? "#38bdf8" }}
                 />
                 <div
-                  className="absolute h-6 w-6 rounded-full opacity-35 animate-pulse pointer-events-none"
+                  className="absolute h-6 w-6 rounded-full opacity-35 animate-pulse pointer-events-none hidden md:block"
                   style={{ backgroundColor: marker.color ?? "#38bdf8" }}
                 />
                 
