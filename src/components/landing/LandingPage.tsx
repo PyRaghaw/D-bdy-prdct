@@ -42,13 +42,12 @@ export function LandingPage() {
         <BearySection />
         <AmbulanceSection />
       </main>
-      {/* Relative wrapper grouping Testimonials, CTA, and Footer for sticky MeetTheCrew boundary */}
       <div className="relative">
         <TestimonialsSection />
         <CTASection />
         <Footer />
-        <MeetTheCrew />
       </div>
+      <MeetTheCrew />
       <ChatbotWidget />
     </>
   );

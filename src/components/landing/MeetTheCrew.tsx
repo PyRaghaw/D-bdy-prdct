@@ -92,26 +92,24 @@ export function MeetTheCrew() {
 
   return (
     <>
-      {/* Trigger — sticky/floating directly above the chatbot, bound to the parent container */}
-      <div className="pointer-events-none absolute inset-y-0 right-6 z-[100] w-[120px] flex flex-col justify-end">
-        <div className="pointer-events-auto sticky bottom-[104px] w-full flex flex-col items-center">
-          <button
-            onClick={togglePanel}
-            className={`flex flex-col items-center gap-1.5 p-2.5 bg-white/85 backdrop-blur-md border border-purple-100 rounded-[20px] shadow-xl hover:shadow-2xl hover:border-purple-300 transition-all duration-300 ${isOpen ? 'opacity-0 pointer-events-none translate-x-10' : 'opacity-100 translate-x-0'}`}
-          >
-            <div className="flex flex-col -space-y-2 relative">
-              {CREW_MEMBERS.slice(0, 3).map((member, i) => (
-                <div key={member.id} className="relative w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-purple-50 shadow-sm" style={{ zIndex: 10 - i }}>
-                  <img src={member.avatar} alt={member.name} className="w-full h-full object-cover" />
-                </div>
-              ))}
-              <div className="relative w-10 h-10 rounded-full border-2 border-white bg-purple-100 flex items-center justify-center text-xs font-bold text-purple-700 shadow-sm z-0">
-                +1
+      {/* Trigger — fixed globally directly above the chatbot */}
+      <div className="pointer-events-none fixed bottom-[104px] right-6 z-[99998] w-16 flex flex-col items-center">
+        <button
+          onClick={togglePanel}
+          className={`pointer-events-auto flex flex-col items-center gap-1.5 p-2.5 bg-white/85 backdrop-blur-md border border-purple-100 rounded-[20px] shadow-xl hover:shadow-2xl hover:border-purple-300 transition-all duration-300 ${isOpen ? 'opacity-0 pointer-events-none translate-x-10' : 'opacity-100 translate-x-0'}`}
+        >
+          <div className="flex flex-col -space-y-2 relative">
+            {CREW_MEMBERS.slice(0, 3).map((member, i) => (
+              <div key={member.id} className="relative w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-purple-50 shadow-sm" style={{ zIndex: 10 - i }}>
+                <img src={member.avatar} alt={member.name} className="w-full h-full object-cover" />
               </div>
+            ))}
+            <div className="relative w-10 h-10 rounded-full border-2 border-white bg-purple-100 flex items-center justify-center text-xs font-bold text-purple-700 shadow-sm z-0">
+              +1
             </div>
-            <span className="text-xs font-semibold text-purple-800 tracking-wide mt-1">Crew</span>
-          </button>
-        </div>
+          </div>
+          <span className="text-xs font-semibold text-purple-800 tracking-wide mt-1">Crew</span>
+        </button>
       </div>
 
       {/* The Expanded Panel/Drawer */}
@@ -124,7 +122,7 @@ export function MeetTheCrew() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 bg-black/20 backdrop-blur-sm z-[100] lg:hidden"
+              className="fixed inset-0 bg-black/20 backdrop-blur-sm z-[100000] lg:hidden"
             />
 
             <motion.div
@@ -132,7 +130,7 @@ export function MeetTheCrew() {
               animate={{ x: 0, y: 0, opacity: 1 }}
               exit={{ x: '100%', opacity: 0 }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed z-[101] bg-white/80 backdrop-blur-xl border border-white/40 shadow-2xl overflow-y-auto lg:overflow-visible
+              className="fixed z-[100001] bg-white/80 backdrop-blur-xl border border-white/40 shadow-2xl overflow-y-auto lg:overflow-visible
                 bottom-0 left-0 right-0 h-[85vh] rounded-t-3xl md:h-auto md:max-h-[80vh] md:w-[400px] md:bottom-24 md:right-6 md:left-auto md:rounded-3xl
                 lg:bottom-6 lg:right-20 lg:top-auto lg:translate-y-0 lg:w-[400px] lg:h-auto lg:max-h-[calc(100vh-3rem)] lg:rounded-3xl"
             >
