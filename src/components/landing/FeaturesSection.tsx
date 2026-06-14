@@ -514,10 +514,10 @@ export function MagicBento({
       description: "Instantly digitize prescriptions and summaries into digital schedules.",
       icon: "📷",
       iconBg: "bg-purple-50",
-      screenshot: "/screenshots/scan.jpg",
+      screenshot: "/screenshots/scan-bento.png",
       layoutClass: "col-span-1",
       isWide: false,
-      imagePosition: "center 38%"
+      imagePosition: "center top"
     },
     {
       label: "Voice Assistant",
@@ -557,10 +557,10 @@ export function MagicBento({
       description: "Tracks symptoms and vital logs in real-time with risk warnings.",
       icon: "🚨",
       iconBg: "bg-rose-50",
-      screenshot: "/screenshots/symptoms.jpg",
+      screenshot: "/screenshots/symptoms-bento.jpeg",
       layoutClass: "col-span-1",
       isWide: false,
-      imagePosition: "center 28%"
+      imagePosition: "center top"
     },
     {
       label: "Emergency Hub",
@@ -568,10 +568,10 @@ export function MagicBento({
       description: "Rapid tap, voice triggers, or shakes notify caregivers with location.",
       icon: "🆘",
       iconBg: "bg-red-50",
-      screenshot: "/screenshots/smart-sos.png",
+      screenshot: "/screenshots/smart-sos-bento.jpeg",
       layoutClass: "col-span-1",
       isWide: false,
-      imagePosition: "center 38%"
+      imagePosition: "center top"
     },
     {
       label: "Offline SOS",
@@ -946,13 +946,20 @@ export function MagicBento({
                       </div>
                       {/* Right screenshot */}
                       {card.screenshot && (
-                        <div className="relative w-full h-[200px] sm:h-[240px] md:h-full rounded-[18px] border border-slate-100 overflow-hidden bg-slate-50 pointer-events-none">
-                          <img
-                            src={card.screenshot}
-                            alt={card.title}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                            style={{ objectPosition: card.imagePosition || 'center top' }}
-                          />
+                        <div className="relative w-full h-[200px] sm:h-[240px] md:h-full rounded-[18px] border border-slate-100 overflow-hidden bg-gradient-to-tr from-brand-light/20 via-slate-50 to-white flex items-center justify-center p-3 pointer-events-none">
+                          {/* Premium CSS Phone Frame */}
+                          <div className="relative h-full aspect-[9/19.5] rounded-[24px] border-[5px] border-slate-900 bg-slate-900 shadow-[0_12px_24px_rgba(0,0,0,0.15)] overflow-hidden transition-transform duration-500 group-hover:scale-[1.04]">
+                            {/* Camera Notch */}
+                            <div className="absolute top-1 left-1/2 -translate-x-1/2 w-10 h-2.5 rounded-full bg-slate-900 z-20 flex items-center justify-center">
+                              <span className="w-1 h-1 rounded-full bg-slate-800" />
+                            </div>
+                            <img
+                              src={card.screenshot}
+                              alt={card.title}
+                              className="w-full h-full object-cover rounded-[19px]"
+                              style={{ objectPosition: card.imagePosition || 'center top' }}
+                            />
+                          </div>
                         </div>
                       )}
                     </div>
@@ -987,13 +994,20 @@ export function MagicBento({
                         )}
                       </div>
                       {card.screenshot && (
-                        <div className={`relative w-full rounded-[18px] border border-slate-100 overflow-hidden bg-slate-50 pointer-events-none mt-3 ${card.bullets ? 'h-[120px]' : 'h-[190px]'}`}>
-                          <img
-                            src={card.screenshot}
-                            alt={card.title}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                            style={{ objectPosition: card.imagePosition || 'center top' }}
-                          />
+                        <div className={`relative w-full rounded-[18px] border border-slate-100 overflow-hidden bg-gradient-to-tr from-brand-light/20 via-slate-50 to-white flex items-center justify-center p-2.5 pointer-events-none mt-3 ${card.bullets ? 'h-[120px]' : 'h-[190px]'}`}>
+                          {/* Premium CSS Phone Frame */}
+                          <div className="relative h-full aspect-[9/19.5] rounded-[18px] border-[4px] border-slate-900 bg-slate-900 shadow-[0_8px_16px_rgba(0,0,0,0.12)] overflow-hidden transition-transform duration-500 group-hover:scale-[1.04]">
+                            {/* Camera Notch */}
+                            <div className="absolute top-1 left-1/2 -translate-x-1/2 w-8 h-2 rounded-full bg-slate-900 z-20 flex items-center justify-center">
+                              <span className="w-0.5 h-0.5 rounded-full bg-slate-800" />
+                            </div>
+                            <img
+                              src={card.screenshot}
+                              alt={card.title}
+                              className="w-full h-full object-cover rounded-[14px]"
+                              style={{ objectPosition: card.imagePosition || 'center top' }}
+                            />
+                          </div>
                         </div>
                       )}
                     </div>
